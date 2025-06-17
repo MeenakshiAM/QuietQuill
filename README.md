@@ -1,12 +1,55 @@
-# React + Vite
+# 🪶 QuietQuill
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Your private space to write, reflect, and organize your thoughts.**  
+QuietQuill is a beautifully minimalistic diary and notes application designed with simplicity and creativity in mind.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- 📝 Rich text note-taking with support for:
+  - Adjustable font size
+  - Font style toggles: **Bold**, *Italic*, and <u>Underline</u>
+  - Font family selection
+- 🧠 Clean and calming notebook UI
+- 🎨 Subtle paper texture for a more tactile digital experience
+- 🌟 Sticker support *(coming soon!)*
+- 💾 Auto text update (future enhancement: local or cloud saving)
+- 💡 Responsive design with a notebook-like feel
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📸 Screenshots
+
+![image](https://github.com/user-attachments/assets/914f703a-ca2d-46cc-bf4b-455049a72f4e)
+
+
+---
+
+## 🚀 Tech Stack
+
+- **Frontend:** React.js
+- **Styling:** Vanilla CSS
+  
+### upcoming
+- **backend** integration using SpringBoot
+---
+
+## 📁 Project Structure
+```
+
+quietquill/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   └── Header.jsx
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── README.md
+└── package.json
+
+```
+# 💡 Inspiration
+QuietQuill was inspired by the peaceful ritual of writing in a journal — we wanted to bring that tactile, cozy experience into the digital world without distraction.
