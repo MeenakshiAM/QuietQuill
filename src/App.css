@@ -2,7 +2,7 @@
   margin: 0;
 }
 body{
-  background-color: #FBADC1;
+  background: linear-gradient(135deg, #F7E8DD 0%, #FBADC1 100%);
 }
 nav{
   display: flex;
@@ -162,3 +162,76 @@ NOTEBOOK ---------------------
 .toolbar button:hover::after {
   opacity: 1;
 }
+
+/*
+home............
+*/
+.home-wrapper {
+  min-height: 80vh;
+  background: linear-gradient(135deg, #F7E8DD 0%, #FBADC1 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+}
+
+.home-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  padding: 50px 40px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(251, 130, 157, 0.25);
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-title {
+  font-size: 3em;
+  font-weight: 700;
+  color: #F95965;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.home-description {
+  font-size: 1.1em;
+  color: #444;
+  margin-bottom: 40px;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+.home-button {
+  background-color: #FB829D;
+  color: white;
+  padding: 16px 35px;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(251, 130, 157, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.home-button svg {
+  margin-left: 5px;
+}
+
+.home-button.hovered {
+  background-color: #F95965;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(249, 89, 101, 0.5);
+}
+
+
+

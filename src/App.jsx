@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom';
 import Header from './Components/header'
-import Note from './Components/Note'
+import Home from './Pages/Home';
+import Note from './Pages/Note'
 import './App.css'
 
 function App() {
@@ -8,7 +10,10 @@ function App() {
   return (
     <>
       <Header/>
-      <Note/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/note" element={<Note />} />
+      </Routes>
     </>
   )
 }
