@@ -5,18 +5,18 @@ export default function Note(){
     const [notebook, setNotebook] = React.useState('');
     const [fontSize, setFontSize] = React.useState(16);
     const [FontStyle, setFontStyle] = React.useState({
-
-        bold:false,
-        italic:false,
-        underline:false,
-
+        bold: false,
+        italic: false,
+        underline: false,
     });
     const [fontFamily, setFontFamily] = React.useState('san-serif');
     const [showFontOptions, setShowFontOptions] = useState(false);
-    const [noteText, setNoteText] = useState(''); // added missing state
+    const [noteText, setNoteText] = useState('');
+    const [title, setTitle] = useState('');
+    const [saveMessage, setSaveMessage] = useState('');
 
-    const fontFamilies =[
-         'Arial, sans-serif',
+    const fontFamilies = [
+        'Arial, sans-serif',
         'Verdana, sans-serif',
         'Georgia, serif',
         'Courier New, monospace',
@@ -29,8 +29,8 @@ export default function Note(){
     // so we need to create the fns required
     // we can create the arrow fns
 
-    const increasefs=()=>setFontSize(prevSize=>prevSize+2);
-    const decreasefs=()=>setFontSize(prevSize=>prevSize-2);
+    const increasefs = () => setFontSize(prevSize => prevSize + 2);
+    const decreasefs = () => setFontSize(prevSize => prevSize - 2);
 
     //now for the bold itallic and underline
     const toggleFontStyle = (style) => {
@@ -40,7 +40,7 @@ export default function Note(){
         }));
     }
 
-    const selectFontFamily = (newFont) =>{
+    const selectFontFamily = (newFont) => {
         setFontFamily(newFont);
         setShowFontOptions(false);
     }
@@ -54,7 +54,36 @@ export default function Note(){
         cursor: 'pointer',
     };
 
-    return(
+    // 📝 Save the note to backend
+    const saveNote = async () => {
+        const noteData = {
+            title: title || 'Untitled',
+            content: noteText,
+            date: new Date().toISOString().split('T')[0], // YYYY-MM-DD
+        };
+
+        try {
+            const res = await fetch('/api/notes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(noteData),
+            });
+
+            if (res.ok) {
+                setSaveMessage("✅ Note saved!");
+                setTitle('');
+                setNoteText('');
+            } else {
+                setSaveMessage("❌ Failed to save note.");
+            }
+        } catch (err) {
+            setSaveMessage("⚠️ Error occurred while saving.");
+        }
+    };
+
+    return (
         //this is the whole container in which the notebook and the toolbar exist 
         <div className="note-book">
             {/* this will have the notebook besides the toolbar in the side  */}
@@ -68,23 +97,43 @@ export default function Note(){
                 </div>
                 {/* the text are in which we need to enteer the diary entry */}
                 <div className='main-note'>
+                    <input
+                        type="text"
+                        className="note-title"
+                        placeholder="Title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        style={{
+                            fontSize: `${fontSize + 2}px`,
+                            fontWeight: FontStyle.bold ? 'bold' : 'normal',
+                            fontStyle: FontStyle.italic ? 'italic' : 'normal',
+                            textDecoration: FontStyle.underline ? 'underline' : 'none',
+                            fontFamily: fontFamily,
+                            width: '100%',
+                            marginBottom: '10px',
+                            border: 'none',
+                            borderBottom: '1px solid #ccc',
+                            outline: 'none'
+                        }}
+                    />
                     <textarea className='text-area'
-                    placeholder='start writing ur taughts.... '
-                    style={{
-                        fontSize:`${fontSize}px`,
-                        fontWeight: FontStyle.bold?'bold':'normal',
-                        fontStyle: FontStyle.italic?'italic':'normal',
-                        textDecoration: FontStyle.underline?'underline':'none',
-                        fontFamily:fontFamily
-                    }}
-                    onChange={(e) => setNoteText(e.target.value)}
-                    value={noteText}
-                    >
-
+                        placeholder='start writing ur taughts.... '
+                        style={{
+                            fontSize: `${fontSize}px`,
+                            fontWeight: FontStyle.bold ? 'bold' : 'normal',
+                            fontStyle: FontStyle.italic ? 'italic' : 'normal',
+                            textDecoration: FontStyle.underline ? 'underline' : 'none',
+                            fontFamily: fontFamily
+                        }}
+                        onChange={(e) => setNoteText(e.target.value)}
+                        value={noteText}>
                     </textarea>
 
+                    <button onClick={saveNote} style={{ ...toolbarButtonStyle, marginTop: '10px' }}>💾 Save</button>
+                    {saveMessage && <p style={{ marginTop: '10px', color: '#555' }}>{saveMessage}</p>}
                 </div>
             </div>
+
             {/* this is the toolbar through which the adjustments are done */}
             <div className='toolbar'>
                 {/* im creating this section by providing the buttons to trigger the fn related */}
@@ -93,9 +142,9 @@ export default function Note(){
                 <button onClick={() => toggleFontStyle('bold')} style={{ ...toolbarButtonStyle, fontWeight: FontStyle.bold ? 'bold' : 'normal' }}>
                     <strong>B</strong></button>
 
-                <button onClick={() => toggleFontStyle('italic')} style={{ ...toolbarButtonStyle, fontStyle: FontStyle.italic? 'italic' : 'normal' }}><i>I</i></button>
+                <button onClick={() => toggleFontStyle('italic')} style={{ ...toolbarButtonStyle, fontStyle: FontStyle.italic ? 'italic' : 'normal' }}><i>I</i></button>
 
-                <button onClick={() => toggleFontStyle('underline')} style={{...toolbarButtonStyle, textDecoration: FontStyle.underline? 'underline' : 'none'}}>U</button>
+                <button onClick={() => toggleFontStyle('underline')} style={{ ...toolbarButtonStyle, textDecoration: FontStyle.underline ? 'underline' : 'none' }}>U</button>
 
                 <button onClick={() => setShowFontOptions(!showFontOptions)} style={toolbarButtonStyle}>Font</button>
                 <button style={toolbarButtonStyle}>✨</button>
