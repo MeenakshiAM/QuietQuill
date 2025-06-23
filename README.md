@@ -22,7 +22,8 @@ QuietQuill is a beautifully minimalistic diary and notes application designed wi
 ## 📸 Screenshots
 
 ![image](https://github.com/user-attachments/assets/914f703a-ca2d-46cc-bf4b-455049a72f4e)
-![image](https://github.com/user-attachments/assets/1576cd1a-e59a-4fa8-a3f7-59a5cc857961)
+![image](https://github.com/user-attachments/assets/3c5b37a5-db6a-4229-b661-56c9e6f3676e)
+
 
 
 
