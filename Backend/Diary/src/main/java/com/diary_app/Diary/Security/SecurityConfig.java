@@ -20,12 +20,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrf->csrf.disable())
+                .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.configurationSource(request -> {
+                    var corsConfig = new org.springframework.web.cors.CorsConfiguration();
+                    corsConfig.setAllowedOrigins(java.util.List.of("http://localhost:5173"));
+                    corsConfig.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                    corsConfig.setAllowedHeaders(java.util.List.of("*"));
+                    corsConfig.setAllowCredentials(true);
+                    return corsConfig;
+                }))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/user","/api/signup").permitAll()
+                        .requestMatchers("/api/user", "/api/signup", "/api/login").permitAll()
                         .anyRequest().permitAll()
                 )
                 .build();
+
     }
     @Bean
     // this is the one that returns custom service which pulls user from the DB

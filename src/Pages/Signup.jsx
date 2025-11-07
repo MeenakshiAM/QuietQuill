@@ -34,7 +34,7 @@ export default function Signup() {
         throw new Error(err.message || 'Signup failed');
       }
 
-      alert('Signup successful 🎉');
+      alert('Signup successful ');
       navigate('/login');
     } catch (err) {
       setError(err.message);
@@ -43,7 +43,7 @@ export default function Signup() {
 
   return (
     <div className="auth-container">
-      <h2>🚀 Sign Up</h2>
+      <h2> Sign Up</h2>
 
       <div className="auth-inputs">
         <input

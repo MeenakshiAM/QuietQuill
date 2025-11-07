@@ -1,26 +1,20 @@
-// src/App.jsx
 import { Routes, Route } from 'react-router-dom';
-import Header from './Components/header';
+import Header from './Components/Header';
 import Home from './Pages/Home';
-import Note from './Pages/Note';
-import Login from './Pages/login';
-import Signup from './Pages/Signup';
-import './App.css';
-import Footer from './Components/Footer';
+import Diary from './Pages/Note';
 
-function App() {
+import Login from './Pages/login';
+
+export default function App() {
   return (
     <>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/note" element={<Note />} />
+        <Route path="/diary" element={<Diary />} />
+        
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
       </Routes>
-      <Footer/>
     </>
   );
 }
-
-export default App;
