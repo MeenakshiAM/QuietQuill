@@ -17,10 +17,9 @@ public class userService {
     private userRepo userRepo;
 
     public List<userDto> getInfo(String email) {
-        List<user> users = userRepo.findByEmail(email);
-        return users.stream()
-                .map(u -> new userDto(u.getName(), u.getEmail()))
-                .collect(Collectors.toList());
+        return userRepo.findByEmail(email)
+                .map(u -> List.of(new userDto(u.getName(), u.getEmail())))
+                .orElse(List.of());
     }
 
     public void saveInfo(user user) {

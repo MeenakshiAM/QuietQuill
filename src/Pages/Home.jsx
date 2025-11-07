@@ -2,19 +2,18 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import '../App.css';
 import child from '../assets/child.png';
-
+import book from '../assets/book.png'
+import balloon from '../assets/balloon.png'
 
 export default function Home() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // 🔁 Check login state from localStorage on load
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token);
   }, []);
 
-  // 🔓 Logout function
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
@@ -35,13 +34,44 @@ export default function Home() {
     {
       question: "📝 Can I format my text?",
       answer: "Absolutely. Use bold, italics, underline, and custom fonts from the toolbar to customize your note style."
-    }
+    },
+    {
+  question: " Can I export my notes?",
+  answer: "Yes! You’ll soon be able to export your notes as PDF or text files to keep them offline or share with others."
+},
+{
+  question: " Does it support dark mode?",
+  answer: "Not yet, but it's on our roadmap! We're working on a sleek dark mode so you can write comfortably at night."
+},
+{
+  question: " Is QuietQuill mobile-friendly?",
+  answer: "Yes! QuietQuill is fully responsive, so you can capture your thoughts anytime, anywhere – on desktop, tablet, or mobile."
+}
   ];
 
   const toggle = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
+
+   const features = [
+    {
+      title: ' Clean UI',
+      description: 'Minimalistic, focused notebook interface that enhances your creativity and clarity.'
+    },
+    {
+      title: ' Secure Storage',
+      description: 'Your notes are safe and linked to your login with secure backend integration.'
+    },
+    {
+      title: ' Easy Customization',
+      description: 'Bold, Italic, Font options, and note styling to suit your mood and thoughts.'
+    },
+    {
+      title: ' Fast & Lightweight',
+      description: 'No lag, instant save, and a smooth experience designed with React + Spring Boot.'
+    }
+  ];
 
   return (
     <section>
@@ -95,9 +125,29 @@ export default function Home() {
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
         rel="stylesheet"
       />
-    </div>
+      </div>
+          <div className='choose'>
+              <h1 className='head'>Why Choose Us ?</h1>
+              <div className='img-col'>
+                <img src={balloon} alt="balloon" />
+                <div className="choose-grid">
+                {features.map((feature, index) => (
+                  <div key={index} className="choose-card">
+                    <h3>{feature.title}</h3>
+                    <p>{feature.description}</p>
+                  </div>
+                ))}
+                  </div>
+              </div>
+          </div>
+
+
+
+    
     <div className="faq">
-      <h2 className="faq-title">❓ Frequently Asked Questions</h2>
+      <h2 className="faq-title">Frequently Asked Questions</h2>
+      <div className='img-col'>
+               
       <div className="faq-items">
         {faqs.map((item, index) => (
           <div
@@ -110,6 +160,8 @@ export default function Home() {
           </div>
         ))}
       </div>
+       <img src={book} alt="balloon" />
+    </div>
     </div>
     </section>
   );

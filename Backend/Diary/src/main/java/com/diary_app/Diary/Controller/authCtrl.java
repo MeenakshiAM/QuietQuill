@@ -20,14 +20,14 @@ public class authCtrl {
     @Autowired
     private userService userService;
 
-    // ✅ GET USER INFO BY EMAIL
+    //  GET USER INFO BY EMAIL
     @GetMapping("/user")
     public ResponseEntity<List<userDto>> getInfo(@RequestParam @Valid String email) {
         List<userDto> info = userService.getInfo(email);
         return ResponseEntity.ok(info);
     }
 
-    // ✅ OPTIONAL: Store user directly
+    // OPTIONAL: Store user directly
     @PostMapping("/store")
     public ResponseEntity<?> storeInfo(@RequestBody @Valid user user) {
         userService.saveInfo(user);

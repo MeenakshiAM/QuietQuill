@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import '../App.css';
+import rose from '../assets/rose.png'
 
 export default function Note(){
     const [notebook, setNotebook] = React.useState('');
-    const [fontSize, setFontSize] = React.useState(16);
+    const [fontSize, setFontSize] = React.useState(20);
     const [FontStyle, setFontStyle] = React.useState({
         bold: false,
         italic: false,
@@ -54,7 +55,7 @@ export default function Note(){
         cursor: 'pointer',
     };
 
-    // 📝 Save the note to backend
+    // Save the note to backend
     const saveNote = async () => {
         const noteData = {
             title: title || 'Untitled',
@@ -72,11 +73,11 @@ export default function Note(){
             });
 
             if (res.ok) {
-                setSaveMessage("✅ Note saved!");
+                setSaveMessage("Note saved!");
                 setTitle('');
                 setNoteText('');
             } else {
-                setSaveMessage("❌ Failed to save note.");
+                setSaveMessage(" Failed to save note.");
             }
         } catch (err) {
             setSaveMessage("⚠️ Error occurred while saving.");
@@ -86,6 +87,7 @@ export default function Note(){
     return (
         //this is the whole container in which the notebook and the toolbar exist 
         <div className="note-book">
+            <img src={rose} alt="rose" />
             {/* this will have the notebook besides the toolbar in the side  */}
             <div className='note-container'>
                 {/* inside this u need the border of the book... just for aethetic so   */}
@@ -163,6 +165,7 @@ export default function Note(){
                     </div>
                 )}
             </div>
+             <img src={rose} alt="rose" />
         </div>
     );
 }

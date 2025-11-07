@@ -49,7 +49,7 @@ export default function Login() {
   return (
     <section className="Login-Section">
       <div className="login">
-        <h1>🔐 Login</h1>
+        <h1> Login</h1>
 
         <div className="inputs">
           <input
